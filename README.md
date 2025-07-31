@@ -4,11 +4,6 @@ a simple, open-source mac app to spill it out.
 
 download latest version [here](https://www.spillitout.app/)
 
-<video width="600" controls muted>
-  <source src="https://github.com/faraaz-baig/spill-with-voice/blob/main/Spill%20Launch%20Video%20.mp4" width="352" height="720">
-  Your browser does not support the video tag.
-</video>
-
 ## what is this?
 
 freewriting is a technique from 1973 where you write continuously for a set time without stopping, editing, or caring about grammar. pure stream of consciousness.
