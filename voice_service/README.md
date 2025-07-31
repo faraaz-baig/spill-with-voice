@@ -1,6 +1,6 @@
 # Voice Service - Reflect Feature
 
-This is the voice AI assistant service for the Spillitout app's "reflect" feature. It combines a LiveKit voice agent with a token generation server, providing both real-time voice conversations and authentication for the Spillitout app.
+This is the voice AI assistant service for the Spill app's "reflect" feature. It combines a LiveKit voice agent with a token generation server, providing both real-time voice conversations and authentication for the Spillitout app.
 
 ## Features
 

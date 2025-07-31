@@ -1,16 +1,18 @@
-# hi, this is spill
+# Hi, this is spill
 
 a simple, open-source mac app to spill it out.
 
-download latest version [here](https://www.spillitout.app/)
+download latest version [here](https://www.tryspill.com/)
 
 ## what is this?
 
-freewriting is a technique from 1973 where you write continuously for a set time without stopping, editing, or caring about grammar. pure stream of consciousness.
+freewriting is this thing from 1973 where you just write. nonstop. for however long you set the timer. don't stop to fix typos, don't worry if it makes sense, don't even think about whether it's good. just let your brain dump everything onto the page.
 
-this is not a journaling app or a note-taking app. if you use it for that, you'll open it twice and forget it exists.
+this isn't your productivity app. it's not where you organize your life or take meeting notes. if you try to make it do that stuff, you'll use it twice, maybe three times, then it'll sit there collecting digital dust with all your other "life-changing" apps.
 
-this is a tool purely for freewriting — for unclogging your mental drain.
+this is for one thing only — getting the mental sludge out of your head.
+
+you know that feeling when your thoughts are all tangled up and you can't think straight? when your brain feels like a browser with 47 tabs open? that's what this fixes. you sit down, you write whatever garbage is floating around up there, and suddenly there's space to think again.
 
 ## how it works
 
