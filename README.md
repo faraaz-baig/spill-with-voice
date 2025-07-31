@@ -5,7 +5,7 @@ a simple, open-source mac app to spill it out.
 download latest version [here](https://www.spillitout.app/)
 
 <video width="600" controls muted>
-  <source src="Spill Launch Video .mp4" type="video/mp4">
+  <source src="https://github.com/faraaz-baig/spill-with-voice/blob/main/Spill%20Launch%20Video%20.mp4" width="352" height="720">
   Your browser does not support the video tag.
 </video>
 
