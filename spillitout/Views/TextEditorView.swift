@@ -29,7 +29,7 @@ struct TextEditorView: View {
     }
     
     private var cursorColor: Color {
-        colorScheme == .light ? Color(red: 0.078, green: 0.502, blue: 0.969) : Color(red: 1.0, green: 0.871, blue: 0.408)
+        colorScheme == .light ? Color(red: 0.078, green: 0.502, blue: 0.969) : Color(red: 0.078, green: 0.502, blue: 0.969)
     }
     
     var body: some View {
@@ -49,7 +49,17 @@ struct TextEditorView: View {
             .colorScheme(colorScheme)
             .tint(cursorColor)
             .onAppear {
-                placeholderText = AppSettings.placeholderOptions.randomElement() ?? "Begin writing"
+                let placeholderOptions = [
+                    "Begin writing",
+                    "Pick a thought and go",
+                    "Start typing",
+                    "What's on your mind",
+                    "Just start",
+                    "Type your first thought",
+                    "Start with one sentence",
+                    "Just say it"
+                ]
+                placeholderText = placeholderOptions.randomElement() ?? "Begin writing"
             }
             .overlay(placeholderOverlay, alignment: .topLeading)
             .onGeometryChange(for: CGFloat.self) { proxy in
@@ -75,4 +85,4 @@ struct TextEditorView: View {
             }
         }
     }
-} 
+}

@@ -61,7 +61,7 @@ struct SidebarView: View {
                                             .font(.system(size: 15, weight: .medium))
                                             .lineLimit(1)
                                             .foregroundColor(entry.id == selectedEntryId ? 
-                                                (colorScheme == .dark ? .black : .primary) : .primary)
+                                                (colorScheme == .dark ? .white : .primary) : .primary)
                                         
                                         Spacer()
                                         
@@ -116,7 +116,7 @@ struct SidebarView: View {
                                     Text(entry.date)
                                         .font(.system(size: 13))
                                         .foregroundColor(entry.id == selectedEntryId && colorScheme == .dark ? 
-                                            .black.opacity(0.7) : .secondary)
+                                            .white.opacity(0.8) : .secondary)
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -154,7 +154,7 @@ struct SidebarView: View {
     private func backgroundColor(for entry: HumanEntry) -> Color {
         if entry.id == selectedEntryId {
             if colorScheme == .dark {
-                return Color(red: 1.0, green: 0.871, blue: 0.408).opacity(0.7) // #FFDE68 selection for dark mode
+                return Color(red: 0.227, green: 0.373, blue: 0.561).opacity(0.7) // #3A5F8F selection for dark mode
             } else {
                 return Color(red: 0.545, green: 0.761, blue: 1.0) // #8BC2FF selection for light mode
             }
@@ -168,4 +168,4 @@ struct SidebarView: View {
             return Color.clear
         }
     }
-} 
+}

@@ -243,15 +243,8 @@ struct ContentView: View {
     // MARK: - Helper Methods
     
     private func handleBottomNavHover(_ hovering: Bool) {
-        if hovering {
-            withAnimation(.easeOut(duration: 0.2)) {
-                bottomNavOpacity = 1.0
-            }
-        } else if timerIsRunning {
-            withAnimation(.easeIn(duration: 1.0)) {
-                bottomNavOpacity = 0.0
-            }
-        }
+        // Keep navbar opaque by default - no transparency behavior
+        bottomNavOpacity = 1.0
     }
     
     private func setupKeyboardEvents() {
@@ -276,9 +269,8 @@ struct ContentView: View {
             timeRemaining -= 1
         } else if timeRemaining == 0 {
             timerIsRunning = false
-            withAnimation(.easeOut(duration: 1.0)) {
-                bottomNavOpacity = 1.0
-            }
+            // Keep navbar opaque - no animation needed
+            bottomNavOpacity = 1.0
         }
     }
     
