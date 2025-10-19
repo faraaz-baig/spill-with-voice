@@ -38,9 +38,22 @@
 		2857D48B2D5F8A8100EE1012 /* spillitoutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = spillitoutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		05F9BC4F2EA5577900E909A5 /* Exceptions for "spillitout" folder in "spillitout" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2857D46F2D5F8A8000EE1012 /* spillitout */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2857D4722D5F8A8000EE1012 /* spillitout */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				05F9BC4F2EA5577900E909A5 /* Exceptions for "spillitout" folder in "spillitout" target */,
+			);
 			path = spillitout;
 			sourceTree = "<group>";
 		};
