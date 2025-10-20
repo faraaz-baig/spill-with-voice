@@ -64,3 +64,6 @@ playground.xcworkspace
 
 # Icon?
 Icon?
+
+# Xcode Configuration (contains sensitive URLs and keys)
+*.xcconfig
