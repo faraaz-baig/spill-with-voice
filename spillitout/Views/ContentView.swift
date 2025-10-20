@@ -18,7 +18,7 @@ struct ContentView: View {
     private let headerString = "\n\n"
     @State private var entries: [HumanEntry] = []
     @State private var text: String = ""
-    
+
     @State private var selectedFont: String = "Arial"
     @State private var currentRandomFont: String = ""
     @State private var timeRemaining: Int = AppSettings.defaultTimerDuration
@@ -30,7 +30,13 @@ struct ContentView: View {
     @State private var placeholderText: String = ""
     @State private var lastTypingTime: Date? = nil
     @State private var typingTimer: Timer? = nil
-    
+    @State private var deviceUUID: String = ""
+    @State private var isCheckingSubscription = false
+    @State private var showingPaymentSuccess = false
+    @State private var showingPaymentFailure = false
+    @State private var showingSubscriptionRequired = false
+    @State private var isPollingForSubscription = false
+
     // App state for navigation
     @StateObject private var appState = AppState.shared
     
@@ -140,9 +146,7 @@ struct ContentView: View {
                     backspaceService: backspaceService,
                     text: text,
                     onNewEntry: createNewEntry,
-                    onReflect: {
-                        appState.switchToReflectionSelection()
-                    },
+                    onReflect: handleReflectButtonClick,
                     onBottomNavHover: handleBottomNavHover
                 )
             }
@@ -222,9 +226,13 @@ struct ContentView: View {
         }
         .onAppear {
             showingSidebar = false
+
+            // Get or create device UUID
+            deviceUUID = DeviceUUIDService.shared.getOrCreateDeviceUUID()
+
             loadExistingEntries()
             setupKeyboardEvents()
-            
+
             // Setup speech service callback after view is initialized
             speechService.onTextUpdate = { newText in
                 DispatchQueue.main.async {
@@ -238,10 +246,143 @@ struct ContentView: View {
         .onReceive(timer) { _ in
             updateTimer()
         }
+        .alert("Subscription Required", isPresented: $showingSubscriptionRequired) {
+            Button("Continue") {
+                showingSubscriptionRequired = false
+                proceedToCheckout()
+            }
+            Button("Cancel", role: .cancel) {
+                showingSubscriptionRequired = false
+            }
+        } message: {
+            Text("The Reflect feature requires an active subscription. You will be redirected to complete your purchase.")
+        }
+        .alert("Subscription Active!", isPresented: $showingPaymentSuccess) {
+            Button("Continue") {
+                showingPaymentSuccess = false
+                appState.switchToReflectionSelection()
+            }
+        } message: {
+            Text("Your subscription is now active. You can now use the Reflect feature!")
+        }
+        .alert("Payment Failed", isPresented: $showingPaymentFailure) {
+            Button("OK") {
+                showingPaymentFailure = false
+            }
+        } message: {
+            Text("We couldn't process your payment. Please try again.")
+        }
     }
     
     // MARK: - Helper Methods
-    
+
+    private func handleReflectButtonClick() {
+        guard !isCheckingSubscription else { return }
+
+        isCheckingSubscription = true
+
+        Task {
+            do {
+                let hasSubscription = try await SubscriptionService.shared.checkSubscription(deviceId: deviceUUID)
+
+                await MainActor.run {
+                    isCheckingSubscription = false
+
+                    if hasSubscription {
+                        // User has subscription, proceed to reflection
+                        appState.switchToReflectionSelection()
+                    } else {
+                        // User doesn't have subscription, show popup first
+                        showingSubscriptionRequired = true
+                    }
+                }
+            } catch {
+                await MainActor.run {
+                    isCheckingSubscription = false
+                    print("Error checking subscription: \(error)")
+                    // Show error alert to user
+                    showSubscriptionCheckError()
+                }
+            }
+        }
+    }
+
+    private func proceedToCheckout() {
+        Task {
+            do {
+                _ = try await PaymentService.shared.createCheckoutSession(deviceId: deviceUUID)
+                // Checkout URL will open in browser automatically
+                // Start polling for subscription activation
+                startPollingForSubscription()
+            } catch {
+                print("Error creating checkout session: \(error)")
+                // Show error alert to user
+                await MainActor.run {
+                    showCheckoutError()
+                }
+            }
+        }
+    }
+
+    private func startPollingForSubscription() {
+        guard !isPollingForSubscription else { return }
+
+        isPollingForSubscription = true
+
+        Task {
+            // Poll every 3 seconds for up to 5 minutes (100 attempts)
+            for attempt in 1...100 {
+                try? await Task.sleep(nanoseconds: 3_000_000_000) // 3 seconds
+
+                do {
+                    let hasSubscription = try await SubscriptionService.shared.checkSubscription(deviceId: deviceUUID)
+
+                    if hasSubscription {
+                        // Subscription activated!
+                        await MainActor.run {
+                            isPollingForSubscription = false
+                            showingPaymentSuccess = true
+                        }
+                        return
+                    }
+                } catch {
+                    print("Error polling subscription: \(error)")
+                }
+
+                // Check if user is still on this screen
+                if appState.currentMode != .writing {
+                    await MainActor.run {
+                        isPollingForSubscription = false
+                    }
+                    return
+                }
+            }
+
+            // Polling timed out - user may have abandoned checkout
+            await MainActor.run {
+                isPollingForSubscription = false
+            }
+        }
+    }
+
+    private func showCheckoutError() {
+        let alert = NSAlert()
+        alert.messageText = "Payment Error"
+        alert.informativeText = "Unable to create checkout session. Please try again later."
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
+    }
+
+    private func showSubscriptionCheckError() {
+        let alert = NSAlert()
+        alert.messageText = "Subscription Check Failed"
+        alert.informativeText = "Unable to verify subscription status. Please check your connection and try again."
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
+    }
+
     private func handleBottomNavHover(_ hovering: Bool) {
         // Keep navbar opaque by default - no transparency behavior
         bottomNavOpacity = 1.0
