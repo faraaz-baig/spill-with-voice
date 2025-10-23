@@ -12,6 +12,7 @@
 		68DE22692E38ED6700A93201 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 68DE22682E38ED6700A93201 /* AsyncAlgorithms */; };
 		68DE226B2E38ED6E00A93201 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 68DE226A2E38ED6E00A93201 /* Collections */; };
 		68DE226E2E38EDC500A93201 /* LiveKitComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 68DE226D2E38EDC500A93201 /* LiveKitComponents */; };
+		68DE226F2E3B6A0000A93201 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 68DE226E2E3B6A0000A93201 /* Sparkle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 				68DE22652E38ED1000A93201 /* LiveKit in Frameworks */,
 				68DE22692E38ED6700A93201 /* AsyncAlgorithms in Frameworks */,
 				68DE226E2E38EDC500A93201 /* LiveKitComponents in Frameworks */,
+				68DE226F2E3B6A0000A93201 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +145,7 @@
 				68DE22682E38ED6700A93201 /* AsyncAlgorithms */,
 				68DE226A2E38ED6E00A93201 /* Collections */,
 				68DE226D2E38EDC500A93201 /* LiveKitComponents */,
+				68DE226E2E3B6A0000A93201 /* Sparkle */,
 			);
 			productName = spillitout;
 			productReference = 2857D4702D5F8A8000EE1012 /* spill.app */;
@@ -727,6 +730,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 68DE226C2E38EDB300A93201 /* XCRemoteSwiftPackageReference "components-swift" */;
 			productName = LiveKitComponents;
+		};
+		68DE226E2E3B6A0000A93201 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68DE257A2E3B695A00A93201 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
