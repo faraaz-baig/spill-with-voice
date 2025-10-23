@@ -32,10 +32,6 @@ You need to host two things:
 1. **appcast.xml** - The update feed (tells Sparkle about new versions)
 2. **Spill-X.X.X.zip** - The actual app updates (zipped, signed, notarized)
 
-**Recommended hosting location:** `https://ghq.rathoreactual.com/`
-- Appcast URL: `https://ghq.rathoreactual.com/appcast.xml` (already configured in Info.plist)
-- App downloads: `https://ghq.rathoreactual.com/updates/Spill-X.X.X.zip`
-
 ## Release Process (For Each Update)
 
 ### Step 1: Build & Archive in Xcode
