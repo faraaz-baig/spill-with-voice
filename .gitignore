@@ -2,7 +2,7 @@
 //  .gitignore
 //  spillitout
 //
-//  Created by vishruth on 7/29/25.
+//  Created by faraaz on 7/29/25.
 //
 
 # Xcode
@@ -66,4 +66,6 @@ playground.xcworkspace
 Icon?
 
 # Xcode Configuration (contains sensitive URLs and keys)
-*.xcconfig
+.env.xcconfig
+VoiceAgent.xcconfig
+Release.xcconfig
