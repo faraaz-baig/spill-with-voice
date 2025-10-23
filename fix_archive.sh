@@ -3,8 +3,8 @@
 # Script to fix archive bundle structure for App Store validation
 # This removes nested Contents directories that cause shared bundle path errors
 
-ARCHIVE_PATH="build/spillitout.xcarchive"
-APP_PATH="$ARCHIVE_PATH/Products/Applications/spillitout.app"
+ARCHIVE_PATH="build/spill.xcarchive"
+APP_PATH="$ARCHIVE_PATH/Products/Applications/spill.app"
 
 echo "Fixing archive bundle structure..."
 
