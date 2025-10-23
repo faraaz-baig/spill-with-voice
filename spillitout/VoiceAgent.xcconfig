@@ -1,4 +1,0 @@
-#include ".env.xcconfig"
-
-PRODUCT_BUNDLE_IDENTIFIER = app.humansongs.spillitout
-DEVELOPMENT_TEAM = 4342443424
