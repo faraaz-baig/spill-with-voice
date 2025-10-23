@@ -24,6 +24,10 @@
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LiveKitSandboxId</key>
 	<string>$(LIVEKIT_SANDBOX_ID)</string>
+	<key>SUFeedURL</key>
+	<string>https://ghq.rathoreactual.com/spill-sparkle-feed/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>5eg7ivqQ7IMWPyV9VtaBvDnZGu4Ks/C7IS+ZdniAJ7c=</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsLocalNetworking</key>

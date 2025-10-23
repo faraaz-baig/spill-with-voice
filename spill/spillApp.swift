@@ -6,14 +6,20 @@
 //
 
 import SwiftUI
+import Sparkle
 
 @main
 struct spillApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @AppStorage("colorScheme") private var colorSchemeString: String = "light"
-    
 
-     
+    private let updaterController: SPUStandardUpdaterController
+
+    init() {
+        // Initialize Sparkle updater
+        updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -21,6 +27,11 @@ struct spillApp: App {
         }
         .defaultSize(width: 1100, height: 600)
         .windowResizability(.contentSize)
+        .commands {
+            CommandGroup(after: .appInfo) {
+                CheckForUpdatesView(updater: updaterController.updater)
+            }
+        }
     }
 }
 

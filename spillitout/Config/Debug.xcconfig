@@ -1,0 +1,7 @@
+// Debug Configuration
+// This file is used for local development
+
+// API Configuration
+API_BASE_URL = https:/\\/ghq.rathoreactual.com/api
+
+// Note: The backslash escapes the forward slash to prevent Xcode from treating :// as a scheme separator

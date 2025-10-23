@@ -1,0 +1,15 @@
+// Example Configuration File
+// Copy this file and customize for your environment
+//
+// For local development:
+//   1. Copy this file to Debug.xcconfig
+//   2. Set API_BASE_URL to your local server
+//
+// For production:
+//   1. Copy this file to Release.xcconfig
+//   2. Set API_BASE_URL to your production server
+
+// API Configuration
+API_BASE_URL = http:/$()/localhost:3000/api
+
+// Note: The $(/) syntax prevents Xcode from treating :// as a URL scheme separator
